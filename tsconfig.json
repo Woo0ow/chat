@@ -1,11 +1,19 @@
 {
     "compilerOptions": {
-        "target": "ES5",
-        "module": "commonjs",
-        "strict": true,
+        "target": "es5",
+        "lib": [
+            "dom",
+            "es2015"
+        ],
+        "jsx": "react",
+        "module": "CommonJS",
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true,
-        "resolveJsonModule": true
-    }
+        "forceConsistentCasingInFileNames": true
+    },
+    "include": [
+        "src"
+    ]
 }

@@ -1,9 +1,6 @@
 import React from 'react'
 
-export default function App() {
-  return (
-    <div>
-     app 
-    </div>
-  )
-}
+const App: React.FC = () => {
+  return <div>Hello, React with TypeScript!</div>;
+}; 
+export default App;
