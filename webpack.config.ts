@@ -7,8 +7,16 @@ interface EnvOptions {
    DEV: boolean,
    [key: string]: any
 }
-
-const config = (env: EnvOptions): Configuration => {
+interface ExtendedConfiguration extends Configuration {
+   devServer?: {
+      port: number,
+      allowedHosts: string,
+      static: {
+         directory: string
+      }
+   }
+}
+const config = (env: EnvOptions): ExtendedConfiguration => {
    console.log(env)
    console.log(process.env.NODE_ENV)
    const isDev = env.DEV || env.WEBPACK_SERVE
