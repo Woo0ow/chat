@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Message from '@/views/Message'
 import Directory from '@/views/Directory'
@@ -6,7 +7,8 @@ import Note from '@/views/Note'
 import Setting from '@/views/Setting'
 import './index.scss'
 import avatar from '@/assets/img/avatar.png'
-export default function Layout() {
+export default function WebLayout() {
+    const [isOnline, setIsOnline] = useState(false)
     const navData = [
         {
             id: 1,
@@ -47,15 +49,24 @@ export default function Layout() {
                 <div className="flex">
                     <div className="bg-skyblue" style={
                         {
-                            width:'30%'
+                            width: '5%'
                         }
                     }>
-                    <img src={avatar} alt="" />
+                        <img src={avatar} style={
+                            {
+                                width: '35px',
+                                height: '35px',
+                                borderRadius: '50%'
+                            }
+                        } alt="" />
+                        <div>
+                            <span className={isOnline ? "color-green" : "color-red"}>{isOnline ? "在线" : "离线"}</span>
+                        </div>
                         {Links}
                     </div>
                     <div className="bg-pink" style={
                         {
-                            width:'70%'
+                            width: '95%'
                         }
                     }>
                         {Routes}
