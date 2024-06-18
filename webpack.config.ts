@@ -17,18 +17,20 @@ interface ExtendedConfiguration extends Configuration {
    }
 }
 const config = (env: EnvOptions): ExtendedConfiguration => {
-   console.log(env)
-   console.log(process.env.NODE_ENV)
    const isDev = env.DEV || env.WEBPACK_SERVE
    return {
       mode: isDev ? 'development' : 'production',
       entry: './src/index.tsx',
       output: {
          path: path.resolve(__dirname, 'dist'),
-         filename: isDev ? '[name].js' : '[name].[contenthash].js'
+         filename: isDev ? '[name].js' : '[name].[contenthash].js',
+         assetModuleFilename: 'images/[hash][ext][query]'
       },
       resolve: {
-         extensions: ['.ts', '.tsx', '.js'],
+         alias: {
+            '@': path.resolve(__dirname, 'src')
+         },
+         extensions: ['.ts', '.tsx', '.js']
       },
       module: {
          rules: [
@@ -41,6 +43,21 @@ const config = (env: EnvOptions): ExtendedConfiguration => {
                test: /\.css$/,
                use: ['style-loader', 'css-loader'],
             },
+            {
+               test: /\.s[ac]ss$/i,
+               use: [
+                  // Creates `style` nodes from JS strings
+                  "style-loader",
+                  // Translates CSS into CommonJS
+                  "css-loader",
+                  // Compiles Sass to CSS
+                  "sass-loader",
+               ],
+            },
+            {
+               test: /\.png/,
+               type: 'asset/resource'
+            },
          ],
       },
       plugins: [
@@ -50,9 +67,9 @@ const config = (env: EnvOptions): ExtendedConfiguration => {
       ],
       devServer: {
          port: 3000,
-         allowedHosts:'all',
-         static:{
-            directory:path.resolve(__dirname,'dist')
+         allowedHosts: 'all',
+         static: {
+            directory: path.resolve(__dirname, 'dist')
          }
       },
 

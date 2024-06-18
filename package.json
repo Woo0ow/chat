@@ -21,17 +21,25 @@
   "homepage": "https://github.com/Woo0ow/chat#readme",
   "devDependencies": {
     "@types/node": "20.14.0",
+    "@types/react": "18.3.3",
+    "@types/react-dom": "18.3.0",
     "@types/webpack": "5.28.5",
     "@types/webpack-dev-server": "4.7.2",
+    "css-loader": "7.1.2",
     "html-webpack-plugin": "5.6.0",
+    "react-scripts": "5.0.1",
+    "sass": "1.77.5",
+    "sass-loader": "14.2.1",
+    "style-loader": "4.0.0",
     "ts-loader": "9.5.1",
     "ts-node": "10.9.2",
-    "typescript": "5.4.5",
+    "typescript": "4.9.5",
     "webpack": "5.91.0",
     "webpack-cli": "5.1.4"
   },
   "dependencies": {
     "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react-dom": "18.3.1",
+    "react-router-dom": "5.3.4"
   }
 }

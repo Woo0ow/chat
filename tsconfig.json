@@ -3,7 +3,8 @@
         "target": "es5",
         "lib": [
             "dom",
-            "es2015"
+            "es2015",
+            "dom.iterable"
         ],
         "jsx": "react",
         "module": "CommonJS",
@@ -11,9 +12,19 @@
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true
+        "baseUrl": "./",
+        "paths": {
+            "@/*": [
+                "src/*"
+            ]
+        },
+        "forceConsistentCasingInFileNames": true,
+        "types": ["react","react-dom","node","react-scripts"]
     },
     "include": [
         "src"
+    ],
+    "exclude": [
+        "node_modules"
     ]
 }
