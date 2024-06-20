@@ -1,15 +1,93 @@
-.flex{
+.d-flex {
     display: flex !important;
 }
-.bg-pink{
-   background-color: pink !important; 
+
+.justify-content-center {
+    justify-content: center;
 }
-.bg-skyblue{
+
+.text-align-center {
+    text-align: center;
+}
+
+.bg-pink {
+    background-color: pink !important;
+}
+
+.bg-skyblue {
     background-color: skyblue !important;
 }
-.color-green{
+
+.bg-yellowgreen {
+    background: yellowgreen;
+}
+
+.color-green {
     color: green;
 }
-.color-red{
+
+.color-red {
     color: red;
+}
+
+.active-color {
+
+    color: rgb(24, 144, 255);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    --im-broadside-box-shadow: rgba(29, 35, 41, .05);
+    --n-text-color: rgb(51, 54, 57);
+}
+
+a {
+    text-decoration: none;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.links-container {
+    width: 5%;
+    padding: 10px;
+    box-shadow: 2px 0 8px 0 var(--im-broadside-box-shadow);
+    min-width: 65px;
+    height: 100vh;
+    .avatar {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+    }
+
+    .is-online {
+        font-size: 13px;
+    }
+
+    .links-item {
+        margin: 20px 0;
+        padding: 10px 0;
+        font-size: 12px;
+
+        a {
+            color: var(--n-text-color);
+            display: block;
+
+            .iconfont {
+                font-size: 2rem;
+            }
+        }
+
+    }
+
+}
+
+.routes-container {
+    width:95%; 
 }

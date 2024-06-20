@@ -24,7 +24,7 @@ const config = (env: EnvOptions): ExtendedConfiguration => {
       output: {
          path: path.resolve(__dirname, 'dist'),
          filename: isDev ? '[name].js' : '[name].[contenthash].js',
-         assetModuleFilename: 'images/[hash][ext][query]'
+         assetModuleFilename: 'assets/[hash][ext][query]'
       },
       resolve: {
          alias: {

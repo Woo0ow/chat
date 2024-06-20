@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { Route, Link, useLocation, Redirect, Switch } from 'react-router-dom'
 import Message from '@/views/Message'
 import Directory from '@/views/Directory'
 import Note from '@/views/Note'
@@ -8,71 +8,62 @@ import Setting from '@/views/Setting'
 import './index.scss'
 import avatar from '@/assets/img/avatar.png'
 export default function WebLayout() {
-    const [isOnline, setIsOnline] = useState(false)
+    const [isOnline, setIsOnline] = useState(true)
+    const location = useLocation();
     const navData = [
         {
-            id: 1,
             name: '消息',
             path: '/message',
+            icon: 'icon-a-066_xiaoxi',
             component: Message
         },
         {
-            id: 2,
             name: '通讯录',
             path: '/directory',
+            icon: 'icon-a-066_wodehaoyou',
             component: Directory
         },
         {
-            id: 3,
             name: '笔记',
             path: '/note',
+            icon: 'icon-a-066_tianxiedizhi-37',
             component: Note
         },
         {
-            id: 4,
             name: '设置',
             path: '/setting',
+            icon: 'icon-a-066_shezhi',
             component: Setting
         }
     ]
     const Links = navData.map(item => (
-        <div key={item.id}>
-            <Link to={item.path}>{item.name}</Link>
+        <div className="links-item" key={item.path}>
+            <Link to={item.path}>
+                <div className={`iconfont ${item.icon} ${location.pathname === item.path ? 'active-color' : ''}`}></div>
+                {item.name}
+            </Link>
         </div>
     ))
     const Routes = navData.map(item => (
-        <Route path={item.path} component={item.component} key={item.id} />
+        <Route path={item.path} component={item.component} key={item.path} />
     ))
     return (
         <>
-            <Router>
-                <div className="flex">
-                    <div className="bg-skyblue" style={
-                        {
-                            width: '5%'
-                        }
-                    }>
-                        <img src={avatar} style={
-                            {
-                                width: '35px',
-                                height: '35px',
-                                borderRadius: '50%'
-                            }
-                        } alt="" />
-                        <div>
-                            <span className={isOnline ? "color-green" : "color-red"}>{isOnline ? "在线" : "离线"}</span>
-                        </div>
-                        {Links}
+            <div className="d-flex text-align-center">
+                <div className='links-container'>
+                    <img src={avatar} className='avatar' alt="" />
+                    <div>
+                        <span className={`${isOnline ? "color-green" : "color-red"} cursor-pointer is-online`} >{isOnline ? "在线" : "离线"}</span>
                     </div>
-                    <div className="bg-pink" style={
-                        {
-                            width: '95%'
-                        }
-                    }>
-                        {Routes}
-                    </div>
+                    {Links}
                 </div>
-            </Router>
+                <div className='routes-container'>
+                    <Switch>
+                        {Routes}
+                        <Redirect exact from="/" to="/message" />
+                    </Switch>
+                </div>
+            </div>
         </>
     )
 }
