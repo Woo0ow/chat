@@ -8,7 +8,7 @@ function LeftContainer() {
       <div className="search-container d-flex align-items-center">
         <div className='iconfont icon-search'></div><input type="text" placeholder='搜索的内容' />
       </div>
-      <div className="add bg-skyblue d-flex align-items-center justify-content-center iconfont icon-jiahao"></div>
+      <div className="add cursor-pointer d-flex align-items-center justify-content-center iconfont icon-jiahao"></div>
     </div>
 
     </>
@@ -24,13 +24,13 @@ export default function Message() {
       } leftProps={{
         style: {
           height: '100%',
-          width:'320px',
-          minWidth:"320px"
+          width:'30%',
+          minWidth:'255px'
         },
         className: 'd-flex'
       }} rightProps={{
         style: {
-          width: '80%',
+          width: '70%',
         },
         className: ''
       }} isRouter={false} />

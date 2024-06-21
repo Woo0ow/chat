@@ -51,6 +51,7 @@
 html {
     --im-broadside-box-shadow: rgba(29, 35, 41, .05);
     --n-text-color: rgb(51, 54, 57);
+    --active-color:rgb(24, 144, 255);
 }
 
 a {
@@ -71,5 +72,5 @@ a {
 
 .active-color {
 
-    color: rgb(24, 144, 255);
+    color: var(--active-color);
 }
