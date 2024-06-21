@@ -1,0 +1,22 @@
+.search-container {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    width: 70%;
+    .iconfont {
+        font-size: 1.5rem;
+        margin-right: 5px;
+    }
+
+    input {
+        line-height: 20px;
+        font-size: 12px;
+        outline: none;
+        border: none;
+    }
+}
+
+.add {
+    font-size: 2rem;
+    width: 25%;
+}

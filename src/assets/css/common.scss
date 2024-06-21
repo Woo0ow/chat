@@ -1,0 +1,75 @@
+.d-flex {
+    display: flex !important;
+}
+
+.d-block {
+    display: block !important;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.justify-content-space-around {
+    justify-content: space-around;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.bg-pink {
+    background-color: pink !important;
+}
+
+.bg-skyblue {
+    background-color: skyblue !important;
+}
+
+.bg-yellowgreen {
+    background: yellowgreen;
+}
+
+.color-green {
+    color: green;
+}
+
+.color-red {
+    color: red;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    --im-broadside-box-shadow: rgba(29, 35, 41, .05);
+    --n-text-color: rgb(51, 54, 57);
+}
+
+a {
+    text-decoration: none;
+    color: var(--n-text-color);
+    // &:link {
+    //     color: var(--n-text-color);
+    // }
+
+    // &:visited {
+    //     color: var(--n-text-color);
+    // }
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.active-color {
+
+    color: rgb(24, 144, 255);
+}

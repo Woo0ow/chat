@@ -1,57 +1,5 @@
-.d-flex {
-    display: flex !important;
-}
-
-.justify-content-center {
-    justify-content: center;
-}
-
-.text-align-center {
-    text-align: center;
-}
-
-.bg-pink {
-    background-color: pink !important;
-}
-
-.bg-skyblue {
-    background-color: skyblue !important;
-}
-
-.bg-yellowgreen {
-    background: yellowgreen;
-}
-
-.color-green {
-    color: green;
-}
-
-.color-red {
-    color: red;
-}
-
-.active-color {
-
-    color: rgb(24, 144, 255);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    --im-broadside-box-shadow: rgba(29, 35, 41, .05);
-    --n-text-color: rgb(51, 54, 57);
-}
-
-a {
-    text-decoration: none;
-}
-
-.cursor-pointer {
-    cursor: pointer;
+.container {
+    padding-top: 10px;
 }
 
 .links-container {
@@ -60,6 +8,8 @@ a {
     box-shadow: 2px 0 8px 0 var(--im-broadside-box-shadow);
     min-width: 65px;
     height: 100vh;
+    color: var(--n-text-color);
+
     .avatar {
         width: 35px;
         height: 35px;
@@ -68,26 +18,61 @@ a {
 
     .is-online {
         font-size: 13px;
+        margin-bottom: 20px;
     }
 
     .links-item {
-        margin: 20px 0;
         padding: 10px 0;
         font-size: 12px;
 
         a {
-            color: var(--n-text-color);
             display: block;
 
             .iconfont {
-                font-size: 2rem;
+                font-size: 1.5rem;
             }
         }
+    }
 
+    .link-img {
+        width: 35px;
+        margin-top: 45vh;
+        margin-bottom: 3px;
+        height: 35px;
+        border-radius: 50%;
+    }
+
+    .logout {
+        font-size: 13px;
+    }
+
+    .avatar-detail {
+        position: absolute;
+        left: 65px;
+        top: 25px;
+        border-radius: 2%;
+        transition: width .2s ease-in-out, height .2s ease-in-out, visibility .1s ease-in-out;
+        visibility: hidden;
+        width: 100px;
+        height: 100px;
+
+    }
+
+    .visible {
+        visibility: visible;
+        width: 280px;
+        height: 280px;
+    }
+
+    @media (min-width:1300px) {
+        .avatar-detail {
+            left: 5%;
+        }
     }
 
 }
 
 .routes-container {
-    width:95%; 
+    width: 95%;
+    height: 100vh;
 }
