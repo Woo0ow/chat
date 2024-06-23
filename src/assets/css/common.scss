@@ -57,20 +57,18 @@ html {
 a {
     text-decoration: none;
     color: var(--n-text-color);
-    // &:link {
-    //     color: var(--n-text-color);
-    // }
-
-    // &:visited {
-    //     color: var(--n-text-color);
-    // }
 }
 
 .cursor-pointer {
     cursor: pointer;
 }
-
+.cursor-col-resize{
+    cursor: col-resize;
+}
 .active-color {
 
     color: var(--active-color);
+}
+.position-relative{
+    position: relative;
 }

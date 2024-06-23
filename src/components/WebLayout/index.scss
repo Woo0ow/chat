@@ -1,5 +1,7 @@
+:scope
 .container {
     padding-top: 10px;
+    height: 100vh;
 }
 
 .links-container {
@@ -7,7 +9,6 @@
     padding: 10px;
     box-shadow: 2px 0 8px 0 var(--im-broadside-box-shadow);
     min-width: 65px;
-    height: 100vh;
     color: var(--n-text-color);
 
     .avatar {
@@ -55,6 +56,7 @@
         visibility: hidden;
         width: 100px;
         height: 100px;
+        z-index: 999;
 
     }
 
@@ -74,5 +76,4 @@
 
 .routes-container {
     width: 95%;
-    height: 100vh;
 }

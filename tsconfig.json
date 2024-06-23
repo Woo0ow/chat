@@ -8,7 +8,7 @@
         ],
         "jsx": "react",
         "module": "CommonJS",
-        "moduleResolution": "node",
+        "moduleResolution": "Node",
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
@@ -19,7 +19,12 @@
             ]
         },
         "forceConsistentCasingInFileNames": true,
-        "types": ["react","react-dom","node","react-scripts"]
+        "types": [
+            "react",
+            "react-dom",
+            "node",
+            "react-scripts"
+        ],
     },
     "include": [
         "src"

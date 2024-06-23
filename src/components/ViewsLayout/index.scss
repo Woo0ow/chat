@@ -2,7 +2,18 @@
     box-shadow: 2px 0 8px 0 var(--im-broadside-box-shadow);
 }
 
-.container {
+.col-resize-line{
+    height: 100%;
+    width: 2px;
+    position: absolute;
+    z-index: 1;
+    &:hover{
+        background: var(--active-color);
+    }
+    &:active{
+        background-color: var(--active-color);
+    }
+}
+.layout-container{
     height: 100vh;
-
 }

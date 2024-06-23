@@ -6,14 +6,7 @@ import Note from '@/views/Note'
 import Setting from '@/views/Setting'
 import './index.scss'
 import avatar from '@/assets/img/avatar.png'
-// 防抖函数实现
-let timeout;
-function debounce(func, wait) {
-    return function (...args) {
-        clearTimeout(timeout);//清除前面的任务
-        timeout = setTimeout(() => func.apply(this, args), wait);
-    };
-}
+import debounce from '@/utils/debounce.js'
 function Avatar({ avatar }) {
     const [isShow, setIsShow] = useState(false);
     const handleMouseEnter = debounce(() => {
@@ -54,13 +47,13 @@ function Links({ data, location }) {
     )
 }
 function Routes({ data }) {
-    const Routes = data.map(item => (
-        <Route path={item.path} component={item.component} key={item.path} />
-    ))
     return (
         <div className='routes-container'>
             <Switch>
-                {Routes}
+                {data.map(item => (
+                    <Route path={item.path} component={item.component} key={item.path} />
+                ))
+                }
                 <Redirect exact from="/" to="/message" />
             </Switch>
         </div>
@@ -98,7 +91,7 @@ export default function WebLayout() {
 
     return (
         <>
-            <div className="d-flex text-align-center container">
+            <div className= 'd-flex text-align-center container'>
                 <div className='links-container'>
                     <Avatar avatar={avatar} />
                     <span className={`${isOnline ? "color-green" : "color-red"} cursor-pointer is-online d-block`} >{isOnline ? "在线" : "离线"}</span>
@@ -106,7 +99,7 @@ export default function WebLayout() {
                     <a href="https://github.com/Woo0ow" target='_blank' className='d-block'>
                         <img className='link-img' src="https://avatars.githubusercontent.com/u/166940161?v=4" alt="" />
                     </a>
-                    <div className="logout cursor-pointer">
+                    <div className='logout cursor-pointer'>
                         退出
                     </div>
                 </div>
