@@ -1,19 +1,32 @@
-.aside-shadow {
-    box-shadow: 2px 0 8px 0 var(--im-broadside-box-shadow);
+.views-layout {
+    height: 100%;
+    flex-flow: row nowrap;
+    overflow: hidden;
 }
 
-.col-resize-line{
-    height: 100%;
-    width: 2px;
-    position: absolute;
-    z-index: 1;
-    &:hover{
-        background: var(--active-color);
-    }
-    &:active{
-        background-color: var(--active-color);
-    }
+.views-left {
+    width: 50%;
 }
-.layout-container{
-    height: 100vh;
+
+.views-right {
+    flex: auto;
+    overflow-x: auto;
+
+    .right-content {
+        flex: auto
+    }
+
+    .views-line {
+        height: 100%;
+        width: 2px;
+        background-color: #ccc;
+
+        &:hover {
+            background-color: var(--active-color);
+        }
+
+        &:active {
+            background-color: var(--active-color);
+        }
+    }
 }

@@ -1,129 +1,61 @@
-import React, { ReactElement, useRef, useEffect, useState } from 'react'
-import { HashRouter } from 'react-router-dom'
+import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import './index.scss'
 type Props = {
-    leftContainer: {
-        links?: any
-    } | any,
-    rightContainer: {
-        routes?: any
-    } | any,
-    leftProps?: any,
-    rightProps?: object,
-    isRouter?: boolean,
-    colResize?: boolean
+  leftContent?: ReactElement,
+  rightContent?: ReactElement,
+  leftStyle: React.CSSProperties,
+  rightStyle?: React.CSSProperties
 }
-function Layout({ leftContainer, rightContainer, leftProps = null,
-    rightProps = null, isRouter = false, colResize = false }: Props): ReactElement {
-    const [left, setLeft] = useState(0)
-    const [dragStartX, setDragStartX] = useState(0)
-    const leftContainerRef = useRef(null)
-    useEffect(() => {
-        if (leftContainerRef.current) {
-            setLeft(leftContainerRef.current.offsetWidth);
-        }
-    }, []);
-    const handleDragStart = function (e) {
-        setDragStartX(e.clientX)
-        
+function toNumber(properties){
 
-    }
-    const handleDrag = function (e) {
-        if (e.clientX === 0) return;
-        const diffX = e.clientX - dragStartX;
-        const miniLeft = parseInt(leftProps.style.minWidth.replace('px', ''))
-        const maxLeft = leftProps.maxwidth;
-        if (left + diffX > miniLeft && left + diffX < maxLeft) {
-
-            setLeft(prevLeft => prevLeft + diffX)
-            setDragStartX(e.clientX)
-        }
-        // else if (left + diffX > miniLeft && !(left + diffX < maxLeft)) {
-        //     setLeft(maxLeft)
-        //     setDragStartX(maxLeft)
-        // }
-        // else if (left + diffX < maxLeft && !(left + diffX > miniLeft)) {
-        //     setLeft(miniLeft)
-        //     setDragStartX(miniLeft)
-        // }
-        // console.log(left)
-    }
-    function handleDragEnd(e) {
-        e.preventDefault() // Prevent the default drag end behavior
-    }
-    useEffect(() => {
-        leftContainerRef.current.style.width = left + 'px'
-    }, [left])
-    return (
-        <>
-            {/* {isRouter ? <HashRouter> : null}
-                <div {...leftProps} className='aside-shadow'>
-                    {isRouter ? leftContainer.links : leftContainer}
-                </div>
-                {
-                    colResize && (<div className="col-resize-line cursor-col-resize bg-yellowgreen" onDrag={handleDrag}></div>)
-                }
-                <div {...rightProps}>
-                    {isRouter ? rightContainer.routes : rightContainer}
-                </div>
-                {isRouter ? </HashRouter> : null} */}
-
-            <div className='layout-container d-flex position-relative' >
-                {isRouter ? (
-                    <HashRouter>
-                        <div {...leftProps} className='aside-shadow' >
-                            {leftContainer.links}
-                        </div>
-                        {colResize && (
-                            <div className='col-resize-line cursor-col-resize' onDrag={handleDrag} onDragStart={handleDragStart}
-                                onDragEnd={handleDragEnd} draggable style={
-                                    {
-                                        left: left + 'px'
-                                    }
-                                }></div>
-                        )}
-                        <div {...rightProps} >
-                            {rightContainer.routes}
-                        </div>
-                    </HashRouter>
-
-                ) : (
-                    <>
-                        <div {...leftProps} ref={leftContainerRef} className='aside-shadow' >
-                            {leftContainer}
-                        </div>
-                        {colResize && (
-                            <div className='col-resize-line cursor-col-resize'
-                                onDrag={handleDrag} onDragStart={handleDragStart}
-                                onDragEnd={handleDragEnd} style={
-                                    {
-                                        left: left + 'px'
-                                    }
-                                }></div>
-                        )}
-                        <div {...rightProps} >
-                            {rightContainer}
-                        </div>
-                    </>
-                )}
-            </div>
-        </>
-    )
+return parseFloat(typeof(properties)==='string'?properties.replace('px',''):properties)
 }
-export default function ViewsLayout({ leftContainer, rightContainer, leftProps = null,
-    rightProps = null, isRouter = false, colResize = false }: Props) {
-
-    if (isRouter) {
-        if (leftContainer.links && rightContainer.routes)
-            return <Layout leftContainer={leftContainer}
-                rightContainer={rightContainer} leftProps={leftProps} rightProps={rightProps} isRouter={isRouter} colResize={colResize} />
-        else
-            throw new Error("if you use router then you have to pass leftContainer.links and rightContainer.routes into ViewsLayout component");
+export default function ViewsLayout({ leftContent, rightContent, leftStyle, rightStyle }: Props) {
+  const [leftWidth, setLeftWidth] = useState(0)
+  const [mouseDown, setMouseDown] = useState(false)
+  const [startX, setStartX] = useState(0)
+  const leftRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    if (leftRef) {
+      const leftEl = leftRef.current;
+      setLeftWidth(leftEl.offsetWidth)
     }
-    if (!React.isValidElement(leftContainer) || !React.isValidElement(rightContainer)) {
-        console.log(typeof leftContainer)
-        throw new Error("if you don't use router then you should pass jsx into leftContainer and rightContainer")
+  }, [])
+  function handleMouseUp() {
+    setMouseDown(false)
+  }
+  function handleMouseMove(e) {
+    if (e.clientX === 0 || !mouseDown) return; // Prevent updates when drag ends
+    const diffX = e.clientX - startX
+    setLeftWidth(leftWidth + diffX)
+    setStartX(e.clientX)
+    console.log(leftWidth)
+  }
+  function hanleMouseDown(e) {
+    setStartX(e.clientX)
+    setMouseDown(true)
+    console.log(e.clientX)
+    e.preventDefault()
+  }
+  function handleMouseLeave() {
+    setMouseDown(false)
+  }
+  useEffect(() => {
+    if (leftWidth !== 0) {
+      leftRef.current.style.width = leftWidth + 'px'
     }
-    return <Layout leftContainer={leftContainer}
-        rightContainer={rightContainer} leftProps={leftProps} rightProps={rightProps} isRouter={isRouter} colResize={colResize} />
+  }, [leftWidth])
+  return (
+    <div className='views-layout d-flex' onMouseLeave={handleMouseLeave} onMouseUp={handleMouseUp} onMouseMove={handleMouseMove}>
+      <div className="views-left" ref={leftRef} style={leftStyle}>
+        {leftContent}
+      </div>
+      <div className="views-right d-flex">
+        <div className="views-line cursor-col-resize" onMouseDown={hanleMouseDown}></div>
+        <div className="right-content" style={rightStyle}>
+          {rightContent}
+        </div>
+      </div>
+    </div>
+  )
 }

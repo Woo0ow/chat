@@ -91,16 +91,26 @@ export default function WebLayout() {
 
     return (
         <>
-            <div className= 'd-flex text-align-center container'>
-                <div className='links-container'>
-                    <Avatar avatar={avatar} />
-                    <span className={`${isOnline ? "color-green" : "color-red"} cursor-pointer is-online d-block`} >{isOnline ? "在线" : "离线"}</span>
-                    <Links data={navData} location={location} />
-                    <a href="https://github.com/Woo0ow" target='_blank' className='d-block'>
-                        <img className='link-img' src="https://avatars.githubusercontent.com/u/166940161?v=4" alt="" />
-                    </a>
-                    <div className='logout cursor-pointer'>
-                        退出
+            <div className='d-grid text-align-center web-layout'>
+                <div className='links-container d-grid'>
+                    <div className="header-container">
+
+                        <Avatar avatar={avatar} />
+                        <span className={`${isOnline ? "color-green" : "color-red"} cursor-pointer is-online d-block`} >{isOnline ? "在线" : "离线"}</span>
+                    </div>
+                    <div className="main-container">
+
+                        <Links data={navData} location={location} />
+                    </div>
+                    <div className="footer-container d-flex">
+                        <div className="footer">
+                            <a href="https://github.com/Woo0ow" target='_blank' className='d-block'>
+                                <img className='github' src="https://avatars.githubusercontent.com/u/166940161?v=4" alt="" />
+                            </a>
+                            <div className='logout cursor-pointer'>
+                                退出
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <Routes data={navData} />
