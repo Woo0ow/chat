@@ -4,13 +4,14 @@ type Props = {
   leftContent?: ReactElement,
   rightContent?: ReactElement,
   leftStyle: React.CSSProperties,
-  rightStyle?: React.CSSProperties
+  rightStyle?: React.CSSProperties,
+  isFold?:boolean,
 }
 function toNumber(properties){
 
 return parseFloat(typeof(properties)==='string'?properties.replace('px',''):properties)
 }
-export default function ViewsLayout({ leftContent, rightContent, leftStyle, rightStyle }: Props) {
+export default function ViewsLayout({ leftContent, rightContent, leftStyle, rightStyle,isFold }: Props) {
   const [leftWidth, setLeftWidth] = useState(0)
   const [mouseDown, setMouseDown] = useState(false)
   const [startX, setStartX] = useState(0)
@@ -29,12 +30,10 @@ export default function ViewsLayout({ leftContent, rightContent, leftStyle, righ
     const diffX = e.clientX - startX
     setLeftWidth(leftWidth + diffX)
     setStartX(e.clientX)
-    console.log(leftWidth)
   }
   function hanleMouseDown(e) {
     setStartX(e.clientX)
     setMouseDown(true)
-    console.log(e.clientX)
     e.preventDefault()
   }
   function handleMouseLeave() {
@@ -47,11 +46,11 @@ export default function ViewsLayout({ leftContent, rightContent, leftStyle, righ
   }, [leftWidth])
   return (
     <div className='views-layout d-flex' onMouseLeave={handleMouseLeave} onMouseUp={handleMouseUp} onMouseMove={handleMouseMove}>
-      <div className="views-left" ref={leftRef} style={leftStyle}>
+      <div className={`views-left ${isFold?'d-none':''}`} ref={leftRef} style={leftStyle}>
         {leftContent}
       </div>
       <div className="views-right d-flex">
-        <div className="views-line cursor-col-resize" onMouseDown={hanleMouseDown}></div>
+        <div className={`views-line cursor-col-resize ${isFold?'d-none':''}`} onMouseDown={hanleMouseDown}></div>
         <div className="right-content" style={rightStyle}>
           {rightContent}
         </div>

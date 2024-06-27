@@ -20,17 +20,18 @@
         border-radius: 30px;
 
         .icon {
-            flex: 0, 1, 10%;
+            flex: 0 1 10%;
             font-size: 1.3rem;
             text-align: center;
         }
 
         input {
             border: none;
-            flex: 7, 7, auto;
+            flex: 7 7 auto;
             width: 80%;
             outline: none;
             margin-right: auto;
+            height: 15px;
             line-height: 15px;
             margin-right: 5px;
         }
@@ -114,8 +115,6 @@
         margin-bottom: 10px;
         padding: 15px 5px;
         justify-content: space-between;
-        text-overflow: ellipsis;
-
         img {
             width: 35px;
             height: 35px;
@@ -126,15 +125,18 @@
             flex: auto;
             flex-flow: column nowrap;
             align-items: start;
-            margin:0 5px;
-            .title{
+            margin: 0 5px;
+
+            .title {
                 font-size: 14px;
                 align-items: center;
-                .username{
 
-                margin-right: 2px;
+                .username {
+
+                    margin-right: 2px;
                 }
-                .tag-item{
+
+                .tag-item {
                     display: block;
                     padding: 1px;
                     width: 14px;
@@ -144,19 +146,28 @@
                     background-color: pink;
                 }
             }
-            .content{
-            font-size: 12px;
+
+            .content {
+                font-size: 12px;
+            word-break: break-all;
             overflow: hidden;
-            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+
+                &>div {
+                    flex: 0 0 content;
+                }
             }
         }
 
         .footer {
-            flex: 0, 0, 30px;
+            flex: 0 0 auto;
             color: #999;
             font-size: 12px;
         }
-        &:hover{
+
+        &:hover {
             background-color: #ccc;
         }
     }

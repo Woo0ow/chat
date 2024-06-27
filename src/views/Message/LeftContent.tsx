@@ -126,14 +126,14 @@ function Sessions() {
                                    </span> 
                                 ))}
                             </div>
-                            <div className="content">
-                                <span style={
+                            <div className="content d-flex">
+                                <div style={
                                     {
                                         color:item.isOnline?'green':''
                                     }
                                 }>{item.isOnline?'[在线]':''}
-                                </span>
-                                <span>[{item.contentType}]</span>
+                                </div>
+                                <div>[{item.contentType}]</div>
                             </div>
                         </div>
                         <div className="footer">
