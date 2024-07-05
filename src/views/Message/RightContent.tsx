@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './right-content.scss'
+import avatar from '@/assets/img/avatar.png'
 export default function RightContent({ sessionType, userName, onToggle }) {
     const [isFold, setIsFold] = useState(false)
     function handleClick() {
@@ -28,34 +29,51 @@ export default function RightContent({ sessionType, userName, onToggle }) {
     )
 }
 function Messages() {
-    const data=[
+    const data = [
         {
-            id:1,
-            datetime:'04/13 19:37',
-            content:'1'
+            id: 1,
+            datetime: '04/13 19:37',
+            content: '1'
         },
         {
-            id:2,
-            datetime:'04/15 22:12',
-            content:'asdf'
+            id: 2,
+            datetime: '04/15 22:12',
+            content: 'asdf'
         },
         {
-            id:3,
-            datetime:'06/24 14:38',
-            content:'11111111',
-            reply:{
-                datetime:'06/24 15:28',
-                content:'22222'
+            id: 3,
+            datetime: '06/24 14:38',
+            content: '11111111',
+            reply: {
+                datetime: '06/24 15:28',
+                content: '22222'
             }
         }
     ];
     return (
         <>
-        {
-            data.map(item=>(
-                <div className='message-item' key={`message-item-${item.id}`}></div>
-            ))
-        }
+            {
+                data.map(item => (
+                    <div className='message-item' key={`message-item-${item.id}`} style={
+                        {
+                            textAlign: 'end'
+                        }
+                    }>
+                        <div className="d-flex">
+                            <div className='content'>
+                                <div className="talk-title">{item.datetime}</div>
+                                <span className="talk-content">
+                                    {item.content}
+                                </span>
+                            </div>
+                            <div className="avatar">
+                                <img src={avatar} alt="" />
+                            </div>
+                        </div>
+                        <div className="datetime text-align-center">{item.datetime}</div>
+                    </div>
+                ))
+            }
         </>
     )
 }

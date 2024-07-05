@@ -99,7 +99,6 @@ export default function WebLayout() {
                         <span className={`${isOnline ? "color-green" : "color-red"} cursor-pointer is-online d-block`} >{isOnline ? "在线" : "离线"}</span>
                     </div>
                     <div className="main-container">
-
                         <Links data={navData} location={location} />
                     </div>
                     <div className="footer-container d-flex">

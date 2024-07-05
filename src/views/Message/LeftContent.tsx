@@ -79,7 +79,7 @@ function Search() {
                 <span className='iconfont icon-search icon'></span>
                 <input type="text" placeholder='输入搜索的内容' onFocus={handleFocus} onBlur={handleBlur} onInput={handleInput} value={inputValue} />
                 <div className='cancel-container d-flex'>
-                    <span className={`cancel cursor-pointer ${inputValue === '' ? 'd-none' : ''}`} onClick={handleCancel}>x</span>
+                    <span className={`cancel cursor-pointer ${inputValue === '' ? 'd-none' : ''}`} onClick={handleCancel}>+</span>
                 </div>
             </div>
             <div className="add cursor-pointer d-flex">
